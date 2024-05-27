@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profilo Utente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Profilo Utente</h1>
+        <ul>
+            <li>Username: {{ profile['login'] }}</li>
+            <li>Nome: {{ profile['name'] }}</li>
+            <li>Email: {{ profile['email'] }}</li>
+            <li>Profilo GitHub: <a href="{{ profile['html_url'] }}">{{ profile['html_url'] }}</a></li>
+        </ul>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <h2>Carica un file .txt</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".txt">
+            <input type="submit" value="Carica">
+        </form>
+
+        <h2>File caricati</h2>
+        <ul>
+            {% for file in files %}
+                <li>
+                    <strong>{{ file['filename'] }}</strong> caricato da {{ file['uploaded_by'] }} il {{ file['uploaded_at'] }}
+                    <pre>{{ file['content'] }}</pre>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>
