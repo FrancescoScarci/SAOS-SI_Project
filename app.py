@@ -111,8 +111,17 @@ def profile():
 
 @app.route('/logout')
 def logout():
+    # Rimuovi la chiave specifica della sessione
     session.pop('profile', None)
-    return redirect(url_for('home'))
+    session.clear()  # Cancella tutte le chiavi nella sessione per sicurezza
+    
+    # Crea una risposta di reindirizzamento alla homepage del tuo sito
+    home_url = url_for('home', _external=True)
+    
+    # Reindirizza l'utente alla homepage di GitHub con un parametro di query che riporta l'utente al tuo sito
+    github_logout_url = f'https://github.com/logout?returnTo={home_url}'
+    
+    return redirect(github_logout_url)
 
 if __name__ == '__main__':
     app.run(debug=True)
