@@ -11,3 +11,10 @@ CREATE TABLE files (
     uploaded_by VARCHAR(255) NOT NULL,
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+
+
+GRANT INSERT ON flask_app.files TO 'username'@'localhost';
+GRANT SELECT ON flask_app.files TO 'username'@'localhost';

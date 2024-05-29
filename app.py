@@ -5,67 +5,72 @@ from bs4 import BeautifulSoup
 import os
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = os.urandom(24)  # Genera una chiave segreta per la gestione delle sessioni
 
 # Configura MySQL
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'  # Inserisci il tuo username MySQL
-app.config['MYSQL_PASSWORD'] = '0000'  # Inserisci la tua password MySQL
-app.config['MYSQL_DB'] = 'flask_app'
+app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')  # Username di MySQL
+app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')  # Password di MySQL
+app.config['MYSQL_DB'] = os.getenv('MYSQL_NAME')  # Password di MySQL
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
-mysql = MySQL(app)
+mysql = MySQL(app)  # Inizializza l'estensione MySQL
 
 # Configura OAuth
 oauth = OAuth(app)
 github = oauth.register(
     name='github',
-    client_id='Ov23liDzKhFGdab5KWTH',  # Sostituisci con il tuo client ID
-    client_secret='d4d652fd6f392260859248676d4205daf8dc8971',  # Sostituisci con il tuo client secret
-    authorize_url='https://github.com/login/oauth/authorize',
+    client_id=os.getenv('GITHUB_CLIENT_ID'),  # Client ID di GitHub
+    client_secret=os.getenv('GITHUB_CLIENT_SECRET'),  # Client secret di GitHub
+    authorize_url='https://github.com/login/oauth/authorize',  # URL di autorizzazione di GitHub
     authorize_params=None,
-    access_token_url='https://github.com/login/oauth/access_token',
+    access_token_url='https://github.com/login/oauth/access_token',  # URL per ottenere il token di accesso
     access_token_params=None,
     refresh_token_url=None,
-    redirect_uri='http://localhost:5000/callback',
-    client_kwargs={'scope': 'user:email'},
+    redirect_uri='http://localhost:5000/callback',  # URL di reindirizzamento dopo l'autorizzazione
+    client_kwargs={'scope': 'user:email'},  # Scopi richiesti
 )
 
 # Limite dimensione file in byte (3 MB)
 MAX_FILE_SIZE = 3 * 1024 * 1024
 
+# Funzione per pulire il contenuto del file rimuovendo tag script e style
 def clean_content(content):
     soup = BeautifulSoup(content, 'lxml')
     for script in soup(["script", "style"]):
         script.decompose()
     return soup.get_text()
 
+# Rotta per la home page
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html')  # Renderizza il template home.html
 
+# Rotta per il login
 @app.route('/login')
 def login():
-    return github.authorize_redirect(url_for('authorize', _external=True))
+    return github.authorize_redirect(url_for('authorize', _external=True))  # Reindirizza alla pagina di autorizzazione di GitHub
 
+# Rotta per gestire il callback di GitHub
 @app.route('/callback')
 def authorize():
     try:
-        token = github.authorize_access_token()
-        resp = github.get('https://api.github.com/user', token=token)
+        token = github.authorize_access_token()  # Ottiene il token di accesso
+        resp = github.get('https://api.github.com/user', token=token)  # Ottiene le informazioni sull'utente
         profile = resp.json()
-        session['profile'] = profile
-        return redirect(url_for('profile'))
+        session['profile'] = profile  # Memorizza il profilo dell'utente nella sessione
+        return redirect(url_for('profile'))  # Reindirizza alla pagina del profilo
     except Exception as e:
         print(e)
-        flash('Autenticazione fallita.')
+        flash('Autenticazione fallita.')  # Mostra un messaggio di errore se l'autenticazione fallisce
         return redirect(url_for('home'))
 
+# Rotta per il profilo utente
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     profile = session.get('profile')
     if not profile:
-        return redirect(url_for('home'))
+        return redirect(url_for('home'))  # Se il profilo non è presente nella sessione, reindirizza alla home
 
     if request.method == 'POST':
         if 'file' not in request.files:
@@ -91,7 +96,7 @@ def profile():
 
         filename = file.filename
         content = file.read().decode('utf-8')
-        cleaned_content = clean_content(content)
+        cleaned_content = clean_content(content)  # Pulisce il contenuto del file
         uploaded_by = profile['login']
 
         cur = mysql.connection.cursor()
@@ -109,10 +114,10 @@ def profile():
 
     return render_template('profile.html', profile=profile, files=files)
 
+# Rotta per il logout
 @app.route('/logout')
 def logout():
-    # Rimuovi la chiave specifica della sessione
-    session.pop('profile', None)
+    session.pop('profile', None)  # Rimuove la chiave 'profile' dalla sessione
     session.clear()  # Cancella tutte le chiavi nella sessione per sicurezza
     
     # Crea una risposta di reindirizzamento alla homepage del tuo sito
@@ -124,4 +129,4 @@ def logout():
     return redirect(github_logout_url)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)  # Avvia l'applicazione Flask in modalità debug
