@@ -6,3 +6,10 @@ La seguente applicazione fornisce all'utente un sito web nel quale caricare una 
 Per la realizzazione del progetto si è utilizzato Flask che è un micro framework web scritto in Python. È classificato come microframework perché non richiede strumenti o librerie particolari.
 
 Si è preparato l'ambiente di lavoro installando python e usando come IDE Visual Studio Code ed installando le libreire necessarei
+
+Crea un nuovo ambiente virtuale:
+'''python -m venv venv
+venv\Scripts\activate'''
+
+Installa Flask e Authlib:
+'''pip install flask authlib'''
