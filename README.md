@@ -14,4 +14,6 @@ venv\Scripts\activate
 ```
 
 Installa Flask e Authlib:
-'''pip install flask authlib'''
+``` bash
+pip install flask authlib
+'''
