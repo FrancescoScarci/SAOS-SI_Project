@@ -8,9 +8,8 @@ Per la realizzazione del progetto si è utilizzato Flask che è un micro framewo
 Si è preparato l'ambiente di lavoro installando python e usando come IDE Visual Studio Code ed installando le libreire necessarei
 
 Crea un nuovo ambiente virtuale:
-``` bash python -m venv venv
-
-venv\Scripts\activate
+``` bash python -m venv venv```
+``` bash venv\Scripts\activate```
 
 Installa Flask e Authlib:
 '''pip install flask authlib'''
