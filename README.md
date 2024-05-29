@@ -17,3 +17,4 @@ Installa Flask e Authlib:
 ``` bash
 pip install flask authlib
 ```
+Nelle impostazioni di github, nella sezione sviluppatore, si può selezionare l'opzione "OAuth2 Apps" per poter richiedere il 'Client ID'  e 'Client secrets' per poter usufruire del login tramite github.
