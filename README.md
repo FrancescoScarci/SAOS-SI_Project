@@ -7,14 +7,16 @@ Per la realizzazione del progetto si è utilizzato Flask che è un micro framewo
 
 Si è preparato l'ambiente di lavoro installando python e usando come IDE Visual Studio Code ed installando le libreire necessarei
 
-Crea un nuovo ambiente virtuale:
+1) Crea un nuovo ambiente virtuale:
 ``` bash
 python -m venv venv
 .venv\Scripts\activate
 ```
 
-Installa Flask e Authlib:
+2) Installa Flask e Authlib:
 ``` bash
 pip install flask authlib
 ```
-Nelle impostazioni di github, nella sezione sviluppatore, si può selezionare l'opzione "OAuth2 Apps" per poter richiedere il 'Client ID'  e 'Client secrets' per poter usufruire del login tramite github.
+3) Nelle impostazioni di github, nella sezione sviluppatore, si può selezionare l'opzione "OAuth2 Apps" per poter richiedere il 'Client ID'  e 'Client secrets' per poter usufruire del login tramite github:
+![Screenshot_20240529_180405](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/7f72ff28-55ef-4934-a4e8-3ba1bfb43b30)
+
