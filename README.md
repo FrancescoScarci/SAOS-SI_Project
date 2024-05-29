@@ -10,7 +10,7 @@ Si è preparato l'ambiente di lavoro installando python e usando come IDE Visual
 Crea un nuovo ambiente virtuale:
 ``` bash
 python -m venv venv
-venv\Scripts\activate
+.venv\Scripts\activate
 ```
 
 Installa Flask e Authlib:
