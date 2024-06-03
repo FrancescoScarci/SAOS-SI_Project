@@ -200,3 +200,6 @@ def logout():
 if __name__ == '__main__':
     app.run(debug=True)  # Avvia l'applicazione Flask in modalità debug
 ```
+Le credenziali del db e il github_secret e github_id sono stati inseriti come variabili d'ambiente e non scritti in chiaro nel codice:  
+
+![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/b5674608-46ad-45e5-82ef-485753f33752)
