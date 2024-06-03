@@ -13,12 +13,16 @@ python -m venv venv
 .venv\Scripts\activate
 ```
 
+
 2) Installa Flask e Authlib:
 ``` bash
 pip install flask authlib
 ```
+
+
 3) Nelle impostazioni di github, nella sezione sviluppatore, si può selezionare l'opzione "OAuth2 Apps" per poter richiedere il 'Client ID'  e 'Client secrets' per poter usufruire del login tramite github:
 ![Screenshot_20240529_180405](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/7f72ff28-55ef-4934-a4e8-3ba1bfb43b30)
+
 
 4) I file .txt sono stati salvati all'interno di un database mysql. Installare le librerie necessarie per collegare l'applicazione al database:
 ``` bash
@@ -53,8 +57,9 @@ GRANT INSERT ON flask_app.files TO 'username'@'localhost';
 GRANT SELECT ON flask_app.files TO 'username'@'localhost';
 ```
 
+
 5) La web-app è strutturata nella seguente maniera:
-**Config.py**
+config.py**
 ``` bash
 import os
 
@@ -72,4 +77,14 @@ Qui sono inserite le credenziali del database (esername e password) ed il client
 
 ![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/bc0ecc3d-73c0-4d31-aa72-e14098857145)
 
+**utils.py**
+``` bash
+from bs4 import BeautifulSoup
 
+def clean_content(content):
+    soup = BeautifulSoup(content, 'lxml')
+    for script in soup(["script", "style"]):
+        script.decompose()
+    return soup.get_text()
+```
+Questo codice si occupa della pulizia del file, rimuovendo eventuali tag non consoni per evitare inizieno di codice malevo che potrebbero intaccare il corretto funzionamento del sistema
