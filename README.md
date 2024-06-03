@@ -203,3 +203,15 @@ if __name__ == '__main__':
 Le credenziali del db e il github_secret e github_id sono stati inseriti come variabili d'ambiente e non scritti in chiaro nel codice:  
 
 ![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/b5674608-46ad-45e5-82ef-485753f33752)
+
+6) Avviare l'applicazione con:
+``` bash
+2) Installa Flask e Authlib:
+``` bash
+pip install flask authlib
+```
+ed accedere all'url:
+``` bash
+localhost:5000
+```
+```
