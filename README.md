@@ -58,7 +58,7 @@ GRANT SELECT ON flask_app.files TO 'username'@'localhost';
 ```
 
 
-5) La web-app è strutturata nella seguente maniera:
+5) La web-app è strutturata nella seguente maniera:  
 **config.py**
 ``` bash
 import os
@@ -75,7 +75,7 @@ class Config:
 ```
 Qui sono inserite le credenziali del database (esername e password) ed il client_id e  il client_secret di github. Il tutto è stato inserito come variabile d'ambiente di windows per evitare l'inserimento in chiaro delle info sensibili all'interno del codice sorgente:
 
-![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/bc0ecc3d-73c0-4d31-aa72-e14098857145)
+![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/bc0ecc3d-73c0-4d31-aa72-e14098857145)  
 
 **utils.py**
 ``` bash
