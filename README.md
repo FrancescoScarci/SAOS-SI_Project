@@ -14,8 +14,6 @@ python -m venv venv
 ```
 
 
-
-
 2) Installa Flask e Authlib:
 ``` bash
 pip install flask authlib
@@ -60,7 +58,8 @@ GRANT SELECT ON flask_app.files TO 'username'@'localhost';
 ```
 
 
-5) La web-app è strutturata nella seguente maniera:  
+5) La web-app è strutturata nella seguente maniera:
+
 **config.py**
 ``` bash
 import os
