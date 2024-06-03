@@ -206,10 +206,8 @@ Le credenziali del db e il github_secret e github_id sono stati inseriti come va
 
 6) Avviare l'applicazione con:
 ``` bash
-2) Installa Flask e Authlib:
-``` bash
-pip install flask authlib
-```
+flask run
+``` 
 ed accedere all'url:
 ``` bash
 localhost:5000
