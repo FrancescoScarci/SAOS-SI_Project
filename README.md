@@ -13,17 +13,11 @@ python -m venv venv
 .venv\Scripts\activate
 ```
 
-
-
-
-
-
-
-
-
-
-
-
+  
+  
+  
+  
+  
 
 2) Installa Flask e Authlib:
 ``` bash
