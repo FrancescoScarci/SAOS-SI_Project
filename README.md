@@ -14,6 +14,17 @@ python -m venv venv
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
 2) Installa Flask e Authlib:
 ``` bash
 pip install flask authlib
