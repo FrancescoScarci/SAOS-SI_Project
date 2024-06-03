@@ -30,5 +30,45 @@ Il db conterrà una tabella denominata "files" in cui saranno memorizzati:
 -Il contenuto del file
 -Quale utente ha caricato il file
 -L'arco temporale in cui il file è stato caricato
+``` bash
+DROP DATABASE IF EXISTS flask_app;
 
-5)
+CREATE DATABASE IF NOT EXISTS flask_app;
+
+USE flask_app;
+
+CREATE TABLE files (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    filename VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    uploaded_by VARCHAR(255) NOT NULL,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+
+
+GRANT INSERT ON flask_app.files TO 'username'@'localhost';
+GRANT SELECT ON flask_app.files TO 'username'@'localhost';
+```
+
+5) La web-app è strutturata nella seguente maniera:
+**Config.py**
+``` bash
+import os
+
+class Config:
+    SECRET_KEY = os.urandom(24)
+    MYSQL_HOST = 'localhost'
+    MYSQL_USER = os.getenv('MYSQL_USER')
+    MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
+    MYSQL_DB = os.getenv('MYSQL_NAME')
+    MYSQL_CURSORCLASS = 'DictCursor'
+    GITHUB_CLIENT_ID = os.getenv('GITHUB_CLIENT_ID')
+    GITHUB_CLIENT_SECRET = os.getenv('GITHUB_CLIENT_SECRET')
+```
+Qui sono inserite le credenziali del database (esername e password) ed il client_id e  il client_secret di github. Il tutto è stato inserito come variabile d'ambiente di windows per evitare l'inserimento in chiaro delle info sensibili all'interno del codice sorgente:
+![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/32706400-b6b8-49dc-8a60-b7321ed92add)
+![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/4e4b85ba-3086-420f-9a3d-4a8ece277e2b)
+
