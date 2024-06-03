@@ -14,10 +14,12 @@ python -m venv venv
 ```
 
 
+
 2) Installa Flask e Authlib:
 ``` bash
 pip install flask authlib
 ```
+
 
 
 3) Nelle impostazioni di github, nella sezione sviluppatore, si può selezionare l'opzione "OAuth2 Apps" per poter richiedere il 'Client ID'  e 'Client secrets' per poter usufruire del login tramite github:
