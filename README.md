@@ -206,7 +206,6 @@ Le credenziali del db e il github_secret e github_id sono stati inseriti come va
 ![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/b5674608-46ad-45e5-82ef-485753f33752)
 
 
-
 6) Avviare l'applicazione con:
 ``` bash
 flask run
