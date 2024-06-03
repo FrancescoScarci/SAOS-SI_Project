@@ -70,5 +70,6 @@ class Config:
 ```
 Qui sono inserite le credenziali del database (esername e password) ed il client_id e  il client_secret di github. Il tutto è stato inserito come variabile d'ambiente di windows per evitare l'inserimento in chiaro delle info sensibili all'interno del codice sorgente:
 ![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/32706400-b6b8-49dc-8a60-b7321ed92add)
+
 ![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/4e4b85ba-3086-420f-9a3d-4a8ece277e2b)
 
