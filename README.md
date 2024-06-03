@@ -12,8 +12,8 @@ Si è preparato l'ambiente di lavoro installando python e usando come IDE Visual
 python -m venv venv
 .venv\Scripts\activate
 ```
- 
- 
+
+
 2) Installa Flask e Authlib:
 ``` bash
 pip install flask authlib
