@@ -59,7 +59,7 @@ GRANT SELECT ON flask_app.files TO 'username'@'localhost';
 
 
 5) La web-app è strutturata nella seguente maniera:
-config.py**
+**config.py**
 ``` bash
 import os
 
