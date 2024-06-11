@@ -12,7 +12,7 @@ Si è preparato l'ambiente di lavoro installando python e usando come IDE Visual
 python -m venv venv
 .venv\Scripts\activate
 ```
-
+  
 
 2) Installa Flask e Authlib:
 ``` bash
@@ -57,6 +57,7 @@ GRANT INSERT ON flask_app.files TO 'username'@'localhost';
 GRANT SELECT ON flask_app.files TO 'username'@'localhost';
 ```
 Per il db sono state create credenziali limitatte alle sole operazioni che devono essere effettuate su di esso, invece di inserire le credenziali generali di root.
+
 
 5) La web-app è strutturata nella seguente maniera:
 
@@ -203,6 +204,7 @@ if __name__ == '__main__':
 Le credenziali del db e il github_secret e github_id sono stati inseriti come variabili d'ambiente e non scritti in chiaro nel codice:  
 
 ![image](https://github.com/FrancescoScarci/SAOS-SI_Project/assets/170801341/b5674608-46ad-45e5-82ef-485753f33752)
+
 
 6) Avviare l'applicazione con:
 ``` bash
